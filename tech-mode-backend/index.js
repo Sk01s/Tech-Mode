@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://sk01s.github.io/"],
   })
 );
 app.post("/create-checkout-session", async (req, res) => {
