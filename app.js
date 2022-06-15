@@ -10,7 +10,11 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://sk01s.github.io/"],
+    origin: [
+      "http://localhost:3000",
+      "https://sk01s.github.io/",
+      process.env.YOUR_DOMAIN,
+    ],
   })
 );
 app.post("/create-checkout-session", async (req, res) => {
@@ -39,4 +43,4 @@ app.post("/create-checkout-session", async (req, res) => {
   res.json({ url: session.url });
 });
 
-app.listen(4242);
+app.listen(process.env.PORT);
