@@ -9,7 +9,7 @@ const {
   FieldValue,
 } = require("firebase-admin/firestore");
 
-const serviceAccount = require("./tech-mode-backend/tech-mode-firebase-adminsdk-6hvb0-44923cffa8.json");
+const serviceAccount = require("./tech-mode-firebase-adminsdk-6hvb0-44923cffa8.json");
 
 initializeApp({
   credential: cert(serviceAccount),
