@@ -2,13 +2,14 @@
   "name": "tech-mode",
   "version": "1.0.0",
   "description": "",
-  "main": "./server/app.js",
+  "main": "app.js",
   "engines": {
     "node": "16.15.0"
   },
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node server/app.js",
+    "dev": "nodemon app.js",
+    "build": "cd client && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
