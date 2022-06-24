@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node server/app.js",
-    "dev": "nodemon app.js",
+    "dev": "nodemon server/app.js",
     "build": "cd client && npm install && npm run build"
   },
   "author": "",
