@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server/app.js",
     "dev": "nodemon server/app.js",
-    "build": "cd client && npm install && npm run build"
+    "build": "cd cl && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
