@@ -19,7 +19,6 @@ app.get("*", (req, res) => {
 });
 app.post("/payment/create-checkout-session", async (req, res) => {
   const products = await getCategories();
-  console.log(products);
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "payment",
