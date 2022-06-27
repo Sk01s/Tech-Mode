@@ -8,14 +8,14 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 app.use(express.json());
-app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.use(express.static(path.resolve(__dirname, "../cl/build")));
 app.use(
   cors({
     origin: ["https://sk01s.github.io/", process.env.YOUR_DOMAIN],
   })
 );
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../cl/build", "index.html"));
 });
 app.post("/payment/create-checkout-session", async (req, res) => {
   const products = await getCategories();
@@ -44,4 +44,4 @@ app.post("/payment/create-checkout-session", async (req, res) => {
   res.json({ url: session.url });
 });
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 5500);
