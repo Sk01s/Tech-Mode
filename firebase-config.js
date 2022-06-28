@@ -1,23 +1,20 @@
-const {
-  initializeApp,
-  applicationDefault,
-  cert,
-} = require("firebase-admin/app");
-const {
-  getFirestore,
-  Timestamp,
-  FieldValue,
-} = require("firebase-admin/firestore");
+require("dotenv").config();
+const { initializeApp } = require("firebase/app");
+const { getFirestore, getDocs, collection } = require("firebase/firestore");
 
-const serviceAccount = require("./tech-mode-firebase-adminsdk-6hvb0-44923cffa8.json");
-initializeApp({
-  credential: cert(serviceAccount),
+const app = initializeApp({
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PRODUCT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDERID,
+  appId: process.env.REACT_APP_APPID,
 });
 
-const db = getFirestore();
+const db = getFirestore(app);
 
 async function getCategories() {
-  const data = await db.collection("categories").get();
+  const data = await getDocs(collection(db, "categories"));
   const categories = {};
   data.forEach((doc) => {
     if (doc.data()?.projects === undefined) return;
