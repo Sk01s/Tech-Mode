@@ -119,21 +119,21 @@ export function Favorite({ children }) {
       { merge: true }
     );
   }
-  async function addFavorite(directory, { current }) {
+  async function addFavorite(directory) {
     if (currentUser === null) history("/Tech-Mode/signup");
 
     const favCollect = await getList("Favorite");
     let list;
-
+    let isAdded;
     if (favCollect.list.includes(directory)) {
-      current.classList.remove("added");
       list = favCollect.list.filter((product) => {
         return product !== directory;
       });
+      isAdded = false;
     } else {
-      current.classList.add("added");
       favCollect.list.push(directory);
       list = favCollect.list;
+      isAdded = true;
     }
 
     setFavProducts({ list });
@@ -144,6 +144,7 @@ export function Favorite({ children }) {
       },
       { merge: true }
     );
+    return isAdded;
   }
   async function getFavProducts() {
     if (favProducts?.[0] === undefined) {

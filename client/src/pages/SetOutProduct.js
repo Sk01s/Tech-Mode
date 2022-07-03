@@ -1,10 +1,10 @@
 import MaterialIconsReact from "material-icons-react";
 import React, { useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useCategories } from "../context/CategoiresContext";
 import { useFavorite } from "../context/setOutFucntions";
 import { useNavigate } from "react-router-dom";
-import LoadingAnimtion from "../components/LoadingAnimtion";
+import Popup from "../components/Popup";
 
 export default function SetOutProduct() {
   const history = useNavigate();
@@ -13,6 +13,7 @@ export default function SetOutProduct() {
   const productId = parseInt(productDirec.split("-")[1]);
   const defaultQuantity = parseInt(productDirec.split("-")[2]) || 1;
   const [quantity, setQuantity] = useState(defaultQuantity);
+  const [notification, setNotification] = useState(<></>);
   const categories = useCategories();
   const { addFavorite, addToCart } = useFavorite();
   const favBtn = useRef();
@@ -49,21 +50,33 @@ export default function SetOutProduct() {
               type="number"
               id="quantity"
               value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              onChange={(e) => {
+                setQuantity(e.target.value);
+              }}
               min="1"
             />
           </div>
           <div className="flex align-ce">
             <button
               className="btn-add"
-              onClick={() => addToCart(productDirec, quantity)}
+              onClick={() => {
+                addToCart(productDirec, quantity);
+                setNotification(<Popup text={title} title="added to cart" />);
+                setTimeout(() => setNotification(<></>), 3000);
+              }}
             >
               Add to Cart
             </button>
             <button
               ref={favBtn}
               className="btn-favorite"
-              onClick={() => addFavorite(productDirec, favBtn)}
+              onClick={async () => {
+                const isAdded = await addFavorite(productDirec, favBtn);
+                setNotification(
+                  <Popup title={isAdded ? "added" : "removed"} text={title} />
+                );
+                setTimeout(() => setNotification(<></>), 3000);
+              }}
             >
               <MaterialIconsReact icon="favorite" />
             </button>
@@ -75,6 +88,7 @@ export default function SetOutProduct() {
             Buy Now
           </button>
         </div>
+        {notification}
       </main>
     </div>
   );

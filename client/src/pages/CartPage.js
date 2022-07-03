@@ -49,7 +49,7 @@ export default function CartPage() {
                 return false;
               })
               ?.projects.find((product) =>
-                product.id == productId ? true : false
+                parseInt(product.id) === parseInt(productId) ? true : false
               ),
             categoryId,
             parseInt(product.quantity),
@@ -74,7 +74,7 @@ export default function CartPage() {
     setStates();
   }, [products]);
   const productsCarts = products?.map((product, index) => {
-    if (product[0] === undefined) return;
+    if (product[0] === undefined) return <></>;
     return (
       <div
         className="product-cart-card flex align-ce gap-1"
@@ -184,6 +184,7 @@ export default function CartPage() {
         <DisplayProducts products={[]} title=" No product has been added" />;
       </div>
     );
+
   return (
     <div className="cart-container container flex flex-direc align-ce gap-2">
       {productsCarts}

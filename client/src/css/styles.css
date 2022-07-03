@@ -693,31 +693,40 @@ body {
 /* Start popup */
 .popup {
   color: var(--color-pri);
-  position: absolute;
+  position: fixed;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 15rem;
-  height: 10rem;
-  z-index: 99999999;
-  background-color: var(--color-ac-dark);
+  bottom: 3%;
+  border-radius: 1rem;
+  transform: translate(-50%);
+  width: 12rem;
+  height: 5rem;
+  padding: 1rem;
+  z-index: 9999;
+  background-image: linear-gradient(
+    to right,
+    var(--color-ac-light),
+    var(--color-ac-dark-faded)
+  );
   text-align: center;
-  animation: poping 2.5s;
+  animation: poping var(--timing);
+  border: solid 1px var(--color-text);
 }
 .popup .title,
 .popup .text {
+  color: var(--color-text);
+  margin: 0;
   text-transform: capitalize;
 }
 @keyframes poping {
   0% {
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, 250%);
   }
   30%,
-  90% {
-    transform: translate(-50%, -50%) scale(1);
+  70% {
+    transform: translate(-50%, -50%);
   }
   100% {
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, 250%);
   }
 }
 /* end popup */
@@ -814,7 +823,7 @@ body {
 /* start errorPage */
 .error {
   text-align: center;
-  
+
   color: var(--color-ac-light);
   font-size: 3rem;
 }
