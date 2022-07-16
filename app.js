@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "./client/src/.env" });
+require("dotenv").config();
 const { getProductPrice } = require("./firebase-config");
 const path = require("path");
 const stripe = require("stripe")(process.env.REACT_APP_STRIPE_API_KEY);
