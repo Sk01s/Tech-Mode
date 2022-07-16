@@ -1,7 +1,6 @@
-require("dotenv").config({ path: "./client/.env" });
+require("dotenv").config();
 const { initializeApp } = require("firebase/app");
 const { getFirestore, getDocs, collection } = require("firebase/firestore");
-const { getAuth } = require("firebase/auth");
 
 const app = initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
