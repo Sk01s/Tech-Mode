@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { db } from "../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { db } from "../firebase-config";
 
 const categoriesContext = React.createContext();
 

@@ -427,7 +427,7 @@ body {
 }
 .products-container {
   grid-template-columns: repeat(auto-fit, minmax(60px, 230px));
-  gap: 0.5rem;
+  gap: 1.5rem;
 }
 .product-card {
   text-align: center;
@@ -435,13 +435,15 @@ body {
   border-radius: 10px;
   height: 25rem;
   position: relative;
-  box-shadow: -1px 15px 8px 4px #1111111a;
+  transition: 200ms;
+  box-shadow: -1px 7px 8px 4px #11111110;
 }
 .product-card .img-box {
   margin-top: 0.8rem;
   max-height: 50%;
   transition: transform 200ms;
   padding-bottom: 20px;
+  overflow: hidden;
 }
 
 .product-card .img-box img {
@@ -467,6 +469,9 @@ body {
   padding: 1rem;
   border-radius: 0.2rem 1rem / 0.5rem 2rem;
   transition: 200ms;
+}
+.product-card:hover {
+  transform: scale(1.1);
 }
 .product-card:hover .price {
   border-radius: 50% 50% 29% 71% / 32% 24% 76% 68%;
@@ -704,8 +709,8 @@ body {
   z-index: 9999;
   background-image: linear-gradient(
     to right,
-    var(--color-ac-light),
-    var(--color-ac-dark-faded)
+    var(--color-text-dark),
+    var(--color-text)
   );
   text-align: center;
   animation: poping var(--timing);
@@ -713,7 +718,7 @@ body {
 }
 .popup .title,
 .popup .text {
-  color: var(--color-text);
+  color: var(--color-pri);
   margin: 0;
   text-transform: capitalize;
 }

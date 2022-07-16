@@ -1,7 +1,7 @@
-require("dotenv").config();
-const getCategories = require("./firebase-config");
+require("dotenv").config({ path: "./client/src/.env" });
+const { getProductPrice } = require("./firebase-config");
 const path = require("path");
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
+const stripe = require("stripe")(process.env.REACT_APP_STRIPE_API_KEY);
 
 // This is your test secret API key.
 const express = require("express");
@@ -14,11 +14,14 @@ app.use(
     origin: ["https://sk01s.github.io/", process.env.YOUR_DOMAIN],
   })
 );
+app.get("/api/categories", (req, res) => {
+  res.send();
+});
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 app.post("/payment/create-checkout-session", async (req, res) => {
-  const products = await getCategories();
+  const products = await getProductPrice();
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "payment",

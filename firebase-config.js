@@ -1,6 +1,7 @@
-require("dotenv").config();
+require("dotenv").config({ path: "./client/.env" });
 const { initializeApp } = require("firebase/app");
 const { getFirestore, getDocs, collection } = require("firebase/firestore");
+const { getAuth } = require("firebase/auth");
 
 const app = initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -13,7 +14,7 @@ const app = initializeApp({
 
 const db = getFirestore(app);
 
-async function getCategories() {
+async function getProductPrice() {
   const data = await getDocs(collection(db, "categories"));
   const categories = {};
   data.forEach((doc) => {
@@ -27,4 +28,7 @@ async function getCategories() {
   });
   return categories;
 }
-module.exports = getCategories;
+
+module.exports = {
+  getProductPrice,
+};

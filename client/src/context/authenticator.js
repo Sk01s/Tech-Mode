@@ -4,16 +4,20 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth } from "../firebase-config";
+const { auth } = require("../firebase-config");
 
 const AuthContext = React.createContext();
 
 function signup(email, password) {
-  return createUserWithEmailAndPassword(auth, email, password);
+  return createUserWithEmailAndPassword(auth, email, password).catch(
+    (error) => error.message
+  );
 }
 
 function login(email, password) {
-  return signInWithEmailAndPassword(auth, email, password);
+  return signInWithEmailAndPassword(auth, email, password).catch(
+    (error) => error.message
+  );
 }
 
 export function useAuth() {

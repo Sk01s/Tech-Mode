@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import CategoriesPage from "./pages/CategoryPage";
 import SetOutProduct from "./pages/SetOutProduct";
 import Signup from "./pages/Signup";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import FavoritePage from "./pages/FavoritePage";
 import CartPage from "./pages/CartPage";

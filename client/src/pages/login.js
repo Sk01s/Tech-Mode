@@ -16,8 +16,24 @@ export default function Login() {
 
     setError("");
     login(emailV, passwordV)
-      .then(() => history("/"))
-      .catch(() => setError(" check your email or your password "));
+      .then((message) => {
+        if (typeof message === "string")
+          return setError(
+            message
+              .match(/\/[\s\S]*/)[0]
+              .slice(1, -2)
+              .replaceAll("-", " ")
+          );
+        history("/tech-mode");
+      })
+      .catch((message) =>
+        setError(
+          message
+            .match(/\/[\s\S]*/)[0]
+            .slice(1, -2)
+            .replaceAll("-", " ")
+        )
+      );
   };
   return (
     <form

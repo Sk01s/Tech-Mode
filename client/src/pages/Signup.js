@@ -24,17 +24,27 @@ export default function Signup() {
     }
 
     setError("");
-    try {
-      const respons = await signup(emailV, passwordV);
-      console.log(respons);
-      createCart(respons.user);
-      createFavList(respons.user);
-      history("/Tech-Mode");
-    } catch {
-      setError("");
-    }
-
-    // setError("An error happend during signup");
+    const respons = signup(emailV, passwordV)
+      .then((message) => {
+        if (typeof message === "string")
+          return setError(
+            message
+              .match(/\/[\s\S]*/)[0]
+              .slice(1, -2)
+              .replaceAll("-", " ")
+          );
+        createCart(message.user);
+        createFavList(message.user);
+        history("/tech-mode");
+      })
+      .catch((message) =>
+        setError(
+          message
+            .match(/\/[\s\S]*/)[0]
+            .slice(1, -2)
+            .replaceAll("-", " ")
+        )
+      );
   };
   return (
     <form

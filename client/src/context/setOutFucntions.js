@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import { db } from "../firebase-config";
 import { setDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { useAuth } from "./authenticator";
 import { useNavigate } from "react-router-dom";
+import { db } from "../firebase-config";
 const FavoriteContext = React.createContext();
 
 export function useFavorite() {
